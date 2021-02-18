@@ -1,0 +1,27 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: sitereposk8s 
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: sitereposk8s
+  template:
+    metadata:
+      labels:
+        app: sitereposk8s
+    spec:
+      containers:
+        - name: sitereposk8s
+          image: CR-DEPLOYMENT/sitereposk8s-anp:TAG-DEPLOYMENT
+          env:
+            - name: UrlConsultaGitHub
+              value: https://api.github.com/users/azurenapratica/repos?per_page=7
+            - name: ApplicationInsights__InstrumentationKey
+              valueFrom:
+                configMapKeyRef:
+                  name: sitereposk8s-configmap
+                  key: ApplicationInsightsSiteRepos
+          ports:
+          - containerPort: 80

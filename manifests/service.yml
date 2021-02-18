@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: sitereposk8s
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 80 
+    selector:
+        app: sitereposk8s

@@ -1,0 +1,37 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Consulta ao GitHub";
+}
+
+<div class="text-center">
+    <h5 class="display-4">Consulta a repositorios do GitHub</h5>
+    <p>
+        <b>Url utilizada:</b>
+        <a href="@Model.DadosConsultaGitHub.UrlPesquisa" target="_blank">
+            @Model.DadosConsultaGitHub.UrlPesquisa
+        </a>
+    </p>
+    <p>
+        <b>Versao da aplicacao: </b>1.0.0
+    </p>
+</div>
+<div class="text-left">
+    <p style="margin-left: 40px;">
+        <b>Alguns repositorios - Consulta realizada em @Model.DadosConsultaGitHub.DataConsulta.ToString("dd/MM/yyyy HH:mm:ss"):</b>
+    </p>
+    <ul style="list-style-type:none;">
+        @foreach (var repo in Model.DadosConsultaGitHub.Repositorios)
+        {
+            <li style="margin-top: 10px;">
+                <b>
+                    <a href="@repo.Html_url" target="_blank">
+                        @repo.Full_name
+                    </a>
+                </b>
+                <br>
+                @repo.Description
+            </li>
+        }
+    </ul>
+</div>
